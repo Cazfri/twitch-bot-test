@@ -20,8 +20,6 @@ func main() {
 	messageBufferSize := 100
 	messages := make(chan string, messageBufferSize)
 
-	// TODO: This works for now, but really chat should only start getting consumed
-	// when
 	chatReceiver := twitch.NewChatReceiver(messages)
 	go func() {
 		log.Println("Connecting to twitch client")
