@@ -34,7 +34,7 @@ func NewMessageServer(messageChan chan string, port int) *MessageServer {
 
 // Serve starts the message server, and will block unless the server encounters a fatal error
 func (s *MessageServer) Serve() error {
-	log.Println("Starting message server on port ", s.port)
+	log.Println("Starting message server on port", s.port)
 	http.HandleFunc("/messages", s.handleMessages)
 	return http.ListenAndServe(fmt.Sprintf("localhost:%d", s.port), nil)
 }
