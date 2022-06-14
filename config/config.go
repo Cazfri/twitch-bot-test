@@ -1,6 +1,12 @@
 package config
 
-const MessageServerPort = 8080
+// TODO: All of this should be inside a JSON, TOML, or YAML file and loaded when the service starts,
+// but this is a quick and dirty way to separate the pieces first.
+
+const (
+	MessageServerPort = 8080
+	TwitchChatToWatch = "cazfri"
+)
 
 func AllowedCommands() map[string]bool {
 	return map[string]bool{

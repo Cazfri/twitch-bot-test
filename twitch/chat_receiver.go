@@ -13,7 +13,7 @@ type ChatReceiver struct {
 	allowedCommands map[string]bool
 }
 
-func NewChatReceiver(allowedCommands map[string]bool, messagesChan chan string) *ChatReceiver {
+func NewChatReceiver(chatToWatch string, allowedCommands map[string]bool, messagesChan chan string) *ChatReceiver {
 	twitchClient := twitch.NewAnonymousClient()
 
 	receiver := ChatReceiver{
@@ -24,7 +24,7 @@ func NewChatReceiver(allowedCommands map[string]bool, messagesChan chan string) 
 
 	twitchClient.OnPrivateMessage(receiver.handleMessage)
 
-	twitchClient.Join("cazfri")
+	twitchClient.Join(chatToWatch)
 
 	return &receiver
 }

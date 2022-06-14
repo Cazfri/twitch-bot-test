@@ -21,7 +21,7 @@ func main() {
 	messageBufferSize := 100
 	messages := make(chan string, messageBufferSize)
 
-	chatReceiver := twitch.NewChatReceiver(config.AllowedCommands(), messages)
+	chatReceiver := twitch.NewChatReceiver(config.TwitchChatToWatch, config.AllowedCommands(), messages)
 	go func() {
 		log.Println("Connecting to twitch client")
 		if err := chatReceiver.Connect(); err != nil {
