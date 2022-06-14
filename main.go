@@ -25,12 +25,12 @@ func main() {
 	go func() {
 		log.Println("Connecting to twitch client")
 		if err := chatReceiver.Connect(); err != nil {
-			log.Fatal("Cannot connect to twitch client", err)
+			log.Fatal("Cannot connect to twitch client:", err)
 		}
 	}()
 
 	messageServer := server.NewMessageServer(messages, config.MessageServerPort)
 	if err := messageServer.Serve(); err != nil {
-		log.Fatal("Cannot serve message server", err)
+		log.Fatal("Cannot serve message server:", err)
 	}
 }
