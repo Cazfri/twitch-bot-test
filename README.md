@@ -1,6 +1,6 @@
 # Twitch Chat Test Server
 
-This quick proof of concept
+This quick proof-of-concept will simultaneously monitor a Twitch chat and run a websocket server. The server will distribute all chat messages from Twitch in a standardized format to a client that connects via websocket to `/messages`.
 
 ## How to run
 
