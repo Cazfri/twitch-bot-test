@@ -30,6 +30,7 @@ func NewMessageServer(messageChan chan string, port int) *MessageServer {
 }
 
 func (s *MessageServer) Serve() error {
+	log.Println("Starting message server on port ", s.port)
 	http.HandleFunc("/messages", s.handleMessages)
 	return http.ListenAndServe(fmt.Sprintf("localhost:%d", s.port), nil)
 }

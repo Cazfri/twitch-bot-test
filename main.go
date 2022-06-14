@@ -3,6 +3,7 @@ package main
 import (
 	"log"
 
+	"github.com/cazfri/twitch-bot-test/config"
 	"github.com/cazfri/twitch-bot-test/server"
 	"github.com/cazfri/twitch-bot-test/twitch"
 )
@@ -20,7 +21,7 @@ func main() {
 	messageBufferSize := 100
 	messages := make(chan string, messageBufferSize)
 
-	chatReceiver := twitch.NewChatReceiver(messages)
+	chatReceiver := twitch.NewChatReceiver(config.AllowedCommands(), messages)
 	go func() {
 		log.Println("Connecting to twitch client")
 		if err := chatReceiver.Connect(); err != nil {
@@ -28,9 +29,7 @@ func main() {
 		}
 	}()
 
-	port := 8080
-	log.Println("Starting message server on port ", port)
-	messageServer := server.NewMessageServer(messages, port)
+	messageServer := server.NewMessageServer(messages, config.MessageServerPort)
 	if err := messageServer.Serve(); err != nil {
 		log.Fatal("Cannot serve message server", err)
 	}
